@@ -1,325 +1,90 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
   <title>Genesis Revelation Inc — Soli Deo Gloria</title>
-  <meta name="description" content="Genesis Revelation Inc — Soli Deo Gloria. Advancing the gospel and sharing God’s wisdom and truth as a free gift to the Church." />
-
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    :root{
-      --bg: #0b0f14;
-      --card: rgba(255,255,255,.06);
-      --card2: rgba(255,255,255,.08);
-      --text: rgba(255,255,255,.92);
-      --muted: rgba(255,255,255,.72);
-      --line: rgba(255,255,255,.14);
-      --accent: #c9a74b; /* subtle gold */
-      --accent2:#7aa7ff;
-      --radius: 18px;
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
-      --max: 1100px;
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #0b0b0b;
+      color: #ffffff;
     }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      background:
-        radial-gradient(1200px 600px at 15% -10%, rgba(122,167,255,.18), transparent 55%),
-        radial-gradient(900px 500px at 85% 0%, rgba(201,167,75,.18), transparent 55%),
-        radial-gradient(700px 500px at 50% 110%, rgba(255,255,255,.06), transparent 60%),
-        var(--bg);
-      color: var(--text);
-      line-height:1.45;
+    header {
+      text-align: center;
+      padding: 40px 20px;
+      border-bottom: 1px solid #333;
     }
-    a{color:inherit}
-    .wrap{max-width:var(--max); margin:0 auto; padding:28px 18px 60px;}
-    header{
-      display:flex; align-items:center; justify-content:space-between; gap:14px;
-      padding:14px 16px; border:1px solid var(--line); background:rgba(0,0,0,.22);
-      border-radius: var(--radius); box-shadow: var(--shadow);
-      position:sticky; top:12px; backdrop-filter: blur(10px);
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      padding: 15px;
+      border-bottom: 1px solid #333;
     }
-    .brand{display:flex; align-items:center; gap:12px; min-width: 0;}
-    .mark{
-      width:38px; height:38px; border-radius:12px;
-      background: linear-gradient(135deg, rgba(201,167,75,.95), rgba(122,167,255,.85));
-      box-shadow: 0 8px 20px rgba(0,0,0,.35);
-      display:grid; place-items:center; flex:0 0 auto;
+    nav a {
+      color: #cccccc;
+      text-decoration: none;
+      font-weight: bold;
     }
-    .mark span{font-weight:800; color:#0b0f14}
-    .brand h1{margin:0; font-size:15px; letter-spacing:.3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
-    .brand small{display:block; color:var(--muted); font-size:12px; margin-top:2px;}
-    .nav{display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end}
-    .nav button{
-      border:1px solid var(--line); background:rgba(255,255,255,.05);
-      color:var(--text); padding:9px 10px; border-radius:12px;
-      cursor:pointer; font-size:13px;
+    nav a:hover {
+      color: #ffffff;
     }
-    .nav button[aria-selected="true"]{
-      border-color: rgba(201,167,75,.55);
-      background: linear-gradient(180deg, rgba(201,167,75,.18), rgba(255,255,255,.04));
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      text-align: center;
     }
-
-    .hero{
-      margin-top:22px;
-      border:1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      border-radius: calc(var(--radius) + 6px);
-      padding:28px 18px;
-      box-shadow: var(--shadow);
-      overflow:hidden;
-      position:relative;
-    }
-    .hero:before{
-      content:"";
-      position:absolute; inset:-2px;
-      background:
-        radial-gradient(700px 240px at 18% 20%, rgba(122,167,255,.22), transparent 55%),
-        radial-gradient(700px 240px at 80% 45%, rgba(201,167,75,.18), transparent 58%);
-      pointer-events:none;
-      filter: blur(6px);
-      opacity:.9;
-    }
-    .hero > *{position:relative}
-    .kicker{
-      display:inline-flex; gap:10px; align-items:center;
-      padding:8px 12px; border-radius: 999px;
-      border:1px solid var(--line); background:rgba(0,0,0,.22);
-      color: var(--muted); font-size:13px;
-    }
-    .dot{
-      width:8px; height:8px; border-radius:999px; background: var(--accent);
-      box-shadow: 0 0 0 6px rgba(201,167,75,.15);
-    }
-    .hero h2{
-      margin:14px 0 10px;
-      font-size: clamp(26px, 4.2vw, 44px);
-      line-height:1.08;
-      letter-spacing: .2px;
-    }
-    .hero p{margin:0; color: var(--muted); max-width: 72ch; font-size: 15px;}
-    .ctaRow{display:flex; gap:10px; flex-wrap:wrap; margin-top:16px}
-    .cta{
-      border:1px solid var(--line); border-radius: 14px;
-      padding:10px 12px; background:rgba(255,255,255,.06);
-      display:inline-flex; gap:10px; align-items:center; text-decoration:none;
-      font-size:14px;
-    }
-    .cta.primary{
-      border-color: rgba(201,167,75,.55);
-      background: linear-gradient(180deg, rgba(201,167,75,.20), rgba(255,255,255,.05));
-    }
-    .grid{
-      display:grid; gap:14px;
-      grid-template-columns: repeat(12, 1fr);
-      margin-top:16px;
-    }
-    .card{
-      grid-column: span 12;
-      border:1px solid var(--line);
-      border-radius: var(--radius);
-      background: rgba(255,255,255,.05);
-      padding:16px;
-      box-shadow: 0 10px 26px rgba(0,0,0,.22);
-    }
-    @media (min-width: 860px){
-      .card.span6{grid-column: span 6;}
-      .card.span4{grid-column: span 4;}
-      .card.span8{grid-column: span 8;}
-    }
-    .card h3{margin:0 0 8px; font-size:16px}
-    .card p{margin:0; color: var(--muted); font-size:14px}
-    .label{
-      display:inline-block;
-      padding:6px 10px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background: rgba(0,0,0,.22);
-      color: var(--muted);
-      font-size:12px;
-      margin-bottom:10px;
-    }
-
-    main{margin-top:16px;}
-    .panel{
-      display:none;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.04);
-      border-radius: calc(var(--radius) + 4px);
-      padding:16px;
-      box-shadow: var(--shadow);
-    }
-    .panel.active{display:block;}
-    .panel h3{margin:0 0 8px; font-size:18px;}
-    .panel p{margin:0 0 10px; color: var(--muted);}
-    .placeholder{
-      border:1px dashed rgba(255,255,255,.25);
-      border-radius: 14px;
-      padding:14px;
-      background: rgba(0,0,0,.18);
-      color: rgba(255,255,255,.75);
-      font-size: 13px;
-    }
-    footer{
-      margin-top:22px;
-      color: rgba(255,255,255,.55);
-      font-size:12px;
-      text-align:center;
-    }
-    .smallLinks{
-      display:flex; gap:10px; justify-content:center; flex-wrap:wrap;
-      margin-top:10px;
+    footer {
+      text-align: center;
+      padding: 25px;
+      font-size: 0.85em;
+      color: #888;
+      border-top: 1px solid #333;
+      margin-top: 60px;
     }
   </style>
 </head>
-
 <body>
-  <div class="wrap">
-    <header>
-      <div class="brand">
-        <div class="mark" aria-hidden="true"><span>GR</span></div>
-        <div style="min-width:0">
-          <h1>Genesis Revelation Inc</h1>
-          <small>Soli Deo Gloria • A nonprofit gift to the Church</small>
-        </div>
-      </div>
 
-      <nav class="nav" aria-label="Primary">
-        <button class="tab" aria-selected="true" data-target="home">Home</button>
-        <button class="tab" aria-selected="false" data-target="resources">Resources</button>
-        <button class="tab" aria-selected="false" data-target="about">About</button>
-        <button class="tab" aria-selected="false" data-target="donate">Donate</button>
-        <button class="tab" aria-selected="false" data-target="contact">Contact</button>
-      </nav>
-    </header>
+<header>
+  <h1>Genesis Revelation Inc</h1>
+  <p><em>Soli Deo Gloria</em></p>
+</header>
 
-    <section class="hero">
-      <div class="kicker"><span class="dot"></span>Genesis to Revelation • One Lord • One Truth</div>
-      <h2>For the glory of God and the good of His people.</h2>
-      <p>
-        Genesis Revelation Inc exists to <strong>advance the gospel</strong> and to share
-        <strong>God’s knowledge, wisdom, and truth</strong> with the Church—freely, faithfully, and accessibly.
-        Everything here is a gift. Donations are appreciated and help sustain the time, tools, and resources needed
-        to keep building and expanding this online library.
-      </p>
+<nav>
+  <a href="index.html">Home</a>
+  <a href="mission.html">Mission</a>
+  <a href="resources.html">Resources</a>
+  <a href="donate.html">Donate</a>
+  <a href="contact.html">Contact</a>
+</nav>
 
-      <div class="ctaRow">
-        <a class="cta primary" href="#resources" onclick="openTab('resources'); return false;">Explore resources</a>
-        <a class="cta" href="#donate" onclick="openTab('donate'); return false;">Support the mission</a>
-      </div>
+<main>
+  <h2>Our Mission</h2>
+  <p>
+    Genesis Revelation Inc exists to advance the gospel of Jesus Christ and to
+    faithfully steward and share the knowledge, wisdom, and truth of God as
+    revealed in Scripture—from Genesis to Revelation.
+  </p>
 
-      <div class="grid" aria-label="Highlights">
-        <div class="card span6">
-          <div class="label">Mission</div>
-          <h3>Soli Deo Gloria</h3>
-          <p>
-            Everything we do aims at God’s glory—strengthening believers and pointing the world to Christ.
-          </p>
-        </div>
-        <div class="card span6">
-          <div class="label">Approach</div>
-          <h3>Truth-first, church-serving</h3>
-          <p>
-            Clear teaching, practical tools, and Scripture-centered resources designed for everyday use.
-          </p>
-        </div>
-        <div class="card span4">
-          <div class="label">Coming soon</div>
-          <h3>Studies & study packs</h3>
-          <p>Structured guides, printable resources, and reference materials.</p>
-        </div>
-        <div class="card span4">
-          <div class="label">Coming soon</div>
-          <h3>Articles & notes</h3>
-          <p>Short, shareable teachings and deeper dives.</p>
-        </div>
-        <div class="card span4">
-          <div class="label">Coming soon</div>
-          <h3>Media</h3>
-          <p>Audio/video, downloadable PDFs, and more.</p>
-        </div>
-      </div>
-    </section>
+  <p>
+    This ministry serves the Church by providing Scripture-centered teaching,
+    study resources, and biblical clarity for the glory of God alone.
+  </p>
 
-    <main>
-      <section id="home" class="panel active" aria-label="Home panel">
-        <h3>Welcome</h3>
-        <p>
-          This is the foundation page. The tabs above are ready now, and we’ll fill each section with content as you build it.
-        </p>
-        <div class="placeholder">
-          Next upgrade (when you’re ready): add your logo, choose colors/fonts, and connect a custom domain.
-        </div>
-      </section>
+  <p>
+    Genesis Revelation Inc is a non-profit organization. All content is offered
+    freely as a gift. Donations are never required, but are sincerely appreciated
+    as they help support the time, resources, and growth of this ministry.
+  </p>
+</main>
 
-      <section id="resources" class="panel" aria-label="Resources panel">
-        <h3>Resources</h3>
-        <p>Study packs, printable downloads, and Scripture-centered tools will live here.</p>
-        <div class="placeholder">Placeholder: add your first resource links + featured study pack cards.</div>
-      </section>
+<footer>
+  © 2025 Genesis Revelation Inc — Soli Deo Gloria
+</footer>
 
-      <section id="about" class="panel" aria-label="About panel">
-        <h3>About</h3>
-        <p>
-          Genesis Revelation Inc is a nonprofit ministry project built to serve the Church with faithful, accessible resources.
-        </p>
-        <div class="placeholder">Placeholder: add your story, statement of faith (if you want), and leadership/contact info.</div>
-      </section>
-
-      <section id="donate" class="panel" aria-label="Donate panel">
-        <h3>Donate</h3>
-        <p>
-          All content is offered freely as a gift. If you’d like to help sustain and expand this work, donations are sincerely appreciated.
-        </p>
-        <div class="placeholder">
-          Placeholder: add your donation method (PayPal, Stripe, Givebutter, etc.) and a short “what donations fund” list.
-        </div>
-        <p style="color: rgba(255,255,255,.6); font-size:12px; margin-top:10px;">
-          Note: Add your official nonprofit/tax language here once you confirm your legal/IRS status and donation platform.
-        </p>
-      </section>
-
-      <section id="contact" class="panel" aria-label="Contact panel">
-        <h3>Contact</h3>
-        <p>Reach out for questions, collaboration, or resource requests.</p>
-        <div class="placeholder">
-          Placeholder: add your contact email and/or a simple form link (Google Form, etc.).
-        </div>
-      </section>
-    </main>
-
-    <footer>
-      <div>© <span id="year"></span> Genesis Revelation Inc • Soli Deo Gloria</div>
-      <div class="smallLinks">
-        <a href="#about" onclick="openTab('about'); return false;">About</a>
-        <span aria-hidden="true">•</span>
-        <a href="#donate" onclick="openTab('donate'); return false;">Donate</a>
-        <span aria-hidden="true">•</span>
-        <a href="#contact" onclick="openTab('contact'); return false;">Contact</a>
-      </div>
-    </footer>
-  </div>
-
-  <script>
-    const tabs = Array.from(document.querySelectorAll(".tab"));
-    const panels = Array.from(document.querySelectorAll(".panel"));
-
-    function openTab(id){
-      tabs.forEach(b => b.setAttribute("aria-selected", String(b.dataset.target === id)));
-      panels.forEach(p => p.classList.toggle("active", p.id === id));
-      history.replaceState(null, "", "#" + id);
-    }
-
-    tabs.forEach(btn => {
-      btn.addEventListener("click", () => openTab(btn.dataset.target));
-    });
-
-    // deep links
-    const initial = (location.hash || "#home").replace("#","");
-    if (document.getElementById(initial)) openTab(initial);
-
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
 </body>
 </html>
